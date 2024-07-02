@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三元表达式</title>
+    <style type="text/css">
+        .content {
+            margin-top: 100px;
+        }
+        .content>div {
+            width: 100px;
+            height: 80px;
+            margin: 10px;
+            background-color: orange;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <label for="month" >请选择月份：</label>
+    <select id="month">
+        <option value="">--作出选择--</option>
+        <option value="jan">一月</option>
+        <option value="feb">二月</option>
+        <option value="mar">三月</option>
+        <option value="april">四月</option>
+        <option value="may">五月</option>
+        <option value="june">六月</option>
+        <option value="july">七月</option>
+        <option value="aug">八月</option>
+        <option value="sep">九月</option>
+        <option value="oct">十月</option>
+        <option value="dec">十一月</option>
+        <option value="nov">十二月</option>
+        
+        
+    </select>
+    <div class="content"></div>
+    
+</body>
+<script stype="text/javascript">
+    var tag = document.querySelector('#month');
+    var month = tag.value;
+    tag.addEventListener('change', getMonth);
+    var day31 = ['jan', 'mar', 'may','july','aug','oct','nov'];
+    var day30 = ['april', 'june', 'sep','dec'];
+    var day28 = ['feb'];
+    function getMonth() {
+        var tag = document.querySelector('#month');
+        var month = tag.value;
+        console.log(month)
+        if (day31.indexOf(month) != -1) {
+            console.log('这个$(month)月有31天');
+            renderBlock(31);
+        } else if (day30.indexOf(month) != -1) {
+            console.log('这个$(month)月有30天');
+            renderBlock(30);
+        } else {
+            renderBlock(28);
+        }
+
+    }
+    function renderBlock(num) {
+    var content = document.querySelector('.content');
+    var blocks = content.querySelectorAll('div');
+    for (var i = 0; i < blocks.length; i++) {
+        content.removeChild(blocks[i]);
+    }
+    for (var i = 1; i <= num; i++) {
+        var block = document.createElement('div');
+        block.textContent = i;
+        content.appendChild(block);
+    }
+}
+    
+</script>
+</html>
